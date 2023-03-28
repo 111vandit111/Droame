@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import "../App.css";
+import Footer from "./Footer";
+import Navbar from "./Navbar";
 
 function Booking() {
   //Creating states for Bookings & Forms
@@ -26,18 +28,23 @@ function Booking() {
     setBooking(result);
   };
 
-  const editForm = async () => {
+  const editForm = async (val) => {
+    setLocation(val.location_id._id);
+    setDelivery(val.deliveryDate);
+    setShot(val.shot_id._id);
+    setIsPaid(val.isPaid);
     setForm2("");
   };
 
   return (
     <div>
-      <div className="font-bold text-blue-600"> Add Booking </div>
+
+     <Navbar/>
+      <div className="font-bold text-blue-600 text-3xl my-[30px]"> Manage Booking </div>
       {/* Button That Changes visibility of Adding Booking Form */}
       <button
         className={`form1 w-14 h-14 bg-sky-800 rounded-full text-white text-2xl font-bold my-10`}
-        onClick={() => {
-          setForm1("");
+        onClick={() => { form2=="" ?alert("Cannot add and edit booking at same time"): setForm1("");
         }}
       >
         +
@@ -234,12 +241,12 @@ function Booking() {
         </button>
       </div>
 
-      <div>
+      <div className='mb-[150px]'>
         <div class="flex flex-col">
           <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
             <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
-              <div class="overflow-hidden">
-                <table class="min-w-full text-left text-sm font-light">
+              <div class="overflow-scroll">
+                <table class="min-w-full text-left text-sm font-light  overflow-scroll">
                   <thead class="border-b font-medium dark:border-neutral-500">
                     <tr>
                       <th scope="col" class="px-6 py-4">
@@ -337,11 +344,7 @@ function Booking() {
                               onClick={() => {
                                 setId(val._id);
                                 //this function is reponsible for initiatiang editing of data in Booking Table
-                                setLocation(val.location_id._id);
-                                setDelivery(val.deliveryDate);
-                                setShot(val.shot_id._id);
-                                setIsPaid(val.isPaid);
-                                editForm();
+                                form1=="hidden" ? editForm(val) : alert("Cannot edit and Add Bookings at the same time")
                               }}
                             >
                               edit
@@ -357,6 +360,7 @@ function Booking() {
           </div>
         </div>
       </div>
+      <Footer  />
     </div>
   );
 }

@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import "../App.css";
+import Footer from "./Footer";
+import Navbar from "./Navbar";
 
 function Customer() {
     // Creating States that will be used in this page 
@@ -27,18 +29,27 @@ function Customer() {
 
 
 
-    const editForm = async () => {
+    const editForm = async (val) => {
         setForm2("");
+        setId(val._id)
+        setAddress(val.address)
+        setName(val.name)
+        setEmail(val.Email)
+        setPhone(val.phone)
     }
 
     return (
         <div>
+             <Navbar />
+
+
+
             {/* Button That Changes visibility of Adding Customer Form */}
-            <div className="font-bold text-blue-600"> Add Customer </div>
+            <div className="font-bold text-blue-600 text-3xl my-[30px]"> Handel Customers </div>
             <button
                 className={`form1 w-14 h-14 bg-sky-800 rounded-full text-white text-2xl font-bold my-10`}
                 onClick={() => {
-                    setForm1("");
+                    form2 =="hidden" ? setForm1("") : alert("Cannot edit and add customer form at same time");
                 }}
             >
                 +
@@ -213,7 +224,7 @@ function Customer() {
                 </button>
             </div>
 
-            <div>
+            <div className="mb-[150px]">
                 <div class="flex flex-col">
                     <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
                         <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
@@ -288,12 +299,7 @@ function Customer() {
                                                     </td>
                                                     <td>
                                                         <button type="button" onClick={() => {
-                                                            setId(val._id)
-                                                            setAddress(val.address)
-                                                            setName(val.name)
-                                                            setEmail(val.Email)
-                                                            setPhone(val.phone)
-                                                            editForm();
+                                                            form1 == "" ? alert("Cannot Edit and Add Customer at same time") : editForm(val); 
                                                         }}>
                                                             edit
                                                         </button>
@@ -308,6 +314,9 @@ function Customer() {
                     </div>
                 </div>
             </div>
+
+            <Footer />
+
         </div>
     );
 }
