@@ -99,6 +99,11 @@ function Customer() {
                         });
                         result = await result.json();
                         getCustomer();
+                        setAddress("");
+                        setEmail("");
+                        setId("");
+                        setName("");
+                        setPhone("");
                     }}
                 >
                     Add Customer
@@ -111,6 +116,11 @@ function Customer() {
                     role="button"
                     onClick={() => {
                         setForm1("hidden");
+                        setAddress("");
+                        setEmail("");
+                        setId("");
+                        setName("");
+                        setPhone("");
                     }}
                 >
                     cancel
@@ -192,6 +202,11 @@ function Customer() {
                     role="button"
                     onClick={() => {
                         setForm2("hidden");
+                        setAddress("");
+                        setEmail("");
+                        setId("");
+                        setName("");
+                        setPhone("");
                     }}
                 >
                     cancel
