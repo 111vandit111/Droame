@@ -10,6 +10,7 @@ Now open server folder in your cmd line , rum NPM install
 then after installation run node index.js
 
 FOR CREATING WEB APP
+
 Now open client folder in your cmd line , run NPM install 
 then run npm run dev
 
